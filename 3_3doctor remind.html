@@ -1,0 +1,263 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GFR換算</title>
+<style type="text/css">
+body {
+  margin-left: 0px;
+  margin-top: 0px;
+  background-color: #C18617;
+}
+</style>
+<link href="coco.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+
+function checkList(){
+  var getgender="";
+  for (i = 0; i < document.getElementsByName('gender').length; i++) {
+            if (document.getElementsByName('gender')[i].checked) {
+                getgender = document.getElementsByName('gender')[i].value;
+        return getgender;
+            }
+        }
+  }
+
+function checkform(form) {
+  if (form.t_blood.value == null || form.t_blood.value.length== 0 || form.t_year.value == null || form.t_year.value.length == 0){
+    alert("請輸入年齡、血清肌酸酐數值？");
+    return false;
+    }
+    return true;
+  }
+      
+function checknum(form){
+  if (checkform(form)){
+    var cr=form.t_blood.value;
+    var tyear=form.t_year.value;
+    var sex=checkList();
+    var scr=Math.pow(cr,-1.154);
+    var age=Math.pow(tyear,-0.203);
+    var gfr=(186 * scr * age * sex);
+    
+    var g1 ="慢性腎臟病第一期</br>" +
+     "腎功能正常但併有蛋白尿、血尿等腎臟損傷狀況</br>" +
+     "腎臟功能約正常人的60%以上，是"+
+     "否"+
+     "有糖尿病及高血壓，需要控制血糖與飲食，每半年作腎功能檢查，一般皆能穩住腎功能。但右有腎絲球炎之病患必需接受治療"; 
+     
+    var g2="慢性腎臟病第二期</br>" +
+     "輕度慢性腎衰竭，但並有蛋白尿、血尿等</br>" +
+     "腎臟功能約正常人的60%以上，注意是否有糖尿病及高血壓，需要控制血糖與飲食，每半年作腎功能檢查，一般皆能穩住腎功能。但若有腎絲球炎之病患必需接受治療"; 
+     
+    var g3="慢性腎臟病第三期</br>" +
+     "中度慢性腎衰竭</br>" +
+     "腎臟功能約正常人的30~59%，積極配合醫師治療，減緩進入第五期腎臟病變";
+     
+      var g4="慢性腎臟病第四期</br>" +
+     "重度慢性腎衰竭</br>" +
+     "腎臟功能約正常人的15~30%，積極配合醫師治療，減緩進入第五期腎臟病變";
+     
+      var g5="慢性腎臟病第五期</br>" +
+     "末期腎臟病變</br>" +
+     "腎臟功能剩正常人15%以下，若逐漸無法排除體內代謝廢物和水份，則必需準備與接受透析治療及腎臟移植";
+    
+    form.GFROK.value=formatFloat(gfr,2);
+    if (gfr >100){
+      gfr=100;
+      }
+    if (gfr <=100 && gfr >=90){
+      document.getElementById('myComment').innerHTML=g1;
+      }
+      
+    else if (gfr <=89 && gfr >=60) {
+      document.getElementById('myComment').innerHTML=g2; 
+        }
+        
+     else if (gfr <=59 && gfr >=30) {
+    document.getElementById('myComment').innerHTML=g3;
+        }
+        
+    else if (gfr <=29 && gfr >=15) {
+    document.getElementById('myComment').innerHTML=g4;
+        } 
+          
+      else if (gfr <15) {
+    document.getElementById('myComment').innerHTML=g5;
+        } 
+    }
+  return;
+  }
+  
+function formatFloat(num, pos)
+{
+  var size = Math.pow(10, pos);
+  return Math.round(num * size) / size;
+}  
+  
+
+
+
+
+ //document.getElementById('button').onclick = function(){ calc_bmi(); };
+
+
+//function calc_bmi()
+//{
+ // var h = parseFloat( document.getElementById('height').value );
+ // var w = parseFloat( document.getElementById('weight').value );
+
+ // var bmi = w / ( (h/100)*(h/100) );
+
+ // // 取兩位小數  
+ // bmi = Math.floor(bmi*100) / 100;  // 方法一
+ // bmi = bmi.toFixed(2); // 方法二
+
+ // console.log('bmi=' + bmi);
+
+ // document.getElementById('message').innerHTML = bmi;
+ // // location.href=page;
+//}
+
+
+//function update_height()
+//{
+ // document.getElementById('height').value = document.getElementById('height_slider').value;
+ // calc_bmi();
+//}
+
+
+//function update_weight()
+//{
+  //document.getElementById('weight').value = document.getElementById('weight_slider').value;
+  //calc_bmi();
+//}
+
+
+
+  </script>
+</head>
+
+<body>
+<table width="996" border="0" align="center" cellpadding="0" cellspacing="0">
+
+  <tr>
+
+    <td width="778" valign="top" background="../images/d-r2.jpg" ><table id="___01" width="778" height="369" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="369" valign="top"><table width="743" border="00" cellspacing="0" cellpadding="0">
+          <tr>
+            <td bgcolor="#FFFFFF">&nbsp;</td>
+            </tr>
+        </table>
+          <table width="673" border="00" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="31">&nbsp;</td>
+              <td width="686" class="co-13r"><strong>腎病指標</strong></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td class="co-13"><p>　　我們可以利用「腎病指標」來了解慢性腎病的五個階段如何判斷。慢性腎臟病的五個階段是以「GFR」（腎絲球<span class="red">過濾</span>率值）來判斷您的腎臟功能，而GFR又必須綜合考量您的年齡、性別以及「CR」（血清肌酸酐）。您知道自己的「CR」（血清肌酸酐）多少嗎？知道的話就可以計算你的腎臟功能了：<br />
+  <span class="co-13r"><img src="../images/arrow_up.gif" width="12" height="8" />知道：</span>腎絲球濾過率值 = ( MDRD-Simplify-GFR )<br />
+                
+  <form name="GFR" method="post">
+    <table width="600" border="0" cellpadding="5" cellspacing="0">
+      <tr>
+        <td>**請依性別輸入年齡、血清肌酸酐數值**</td>
+        </tr>
+      <tr>
+        <td><label>186 * 血清肌酸肝值</label><input name="t_blood" type="text" style="border: 1 solid #999" class="txtbox" id="t_blood" size="10" />
+          <sup>-1.154</sup> * 年齡
+          <input name="t_year" type="text" class="txtbox" style="border: 1 solid #999" id="t_year" size="10" />
+          <sup>-0.203</sup></td>
+        </tr>
+      <tr>
+        <td><input name="gender" type="radio" id="male" value="1" checked="checked" />
+          <label for="male">男性</label>
+          <input type="radio" name="gender" id="female" value="0.742" /><label for="male">女性</label></td>
+        </tr>
+      <tr>
+        <td><input name="clacgfr" type="button" class="submitbutton"  onclick="checknum(this.form)" value="計算結果"/></td>
+        </tr>
+      <tr>
+        <td>
+          腎絲球過濾率 eGFR( ml/min/1.73<sup>2</sup> )= 
+          <input name="GFROK" type="text" class="txtboxcomment" style="border: 1 solid #999; color: #F00;" maxlength="30" /> 
+          </td>
+        </tr>
+      <tr>
+        <td><div id="myComment" style="width: 100%; height: 200px; border: 0.1; border-style: dotted; border-color: #CCC; padding-left: 10px; padding-right: 2px;">在此顯示計算結果詳細資訊</div></td>
+        </tr>
+      </table>
+    <br />
+  </form>
+                </p>
+                <p class="co13g">慢性腎臟病的５個階段 </p>
+                <table width="686px" height="200px" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td valign="top" bgcolor="#FFCC66"><table width="686" border="0" cellpadding="3" cellspacing="1" class="co-10">
+                      <tr>
+                        <td width="25" align="center" bgcolor="#FFFFCC" class="red">第一期</td>
+                        <td width="107" bgcolor="#FFFFCC">腎功能正常但併有蛋白尿、血尿等腎臟損傷狀況</td>
+                        <td width="154" bgcolor="#FFFFCC">腎絲球過濾率GFR <span class="red">90~100</span> ml/min/1.73m<sup>2</sup></td>
+                        <td width="384" bgcolor="#FFFFCC">腎臟功能約正常人的60%以上，注意是否有糖尿病及高血壓，需要控制血糖與飲食，每半年作腎功能檢查，一般皆能穩住腎功能。但若有腎絲球炎之病患必需接受治療</td>
+                        </tr>
+                      <tr>
+                        <td align="center" bgcolor="#FFFFFF" class="red">第二期</td>
+                        <td bgcolor="#FFFFFF">輕度慢性腎衰竭，但並有蛋白尿、血尿等</td>
+                        <td bgcolor="#FFFFFF">腎絲球過濾率GFR <span class="red">60~89</span> ml/min/1.73m<sup>2</sup></td>
+                        <td bgcolor="#FFFFFF">腎臟功能約正常人的60%以上，注意是否有糖尿病及高血壓，需要控制血糖與飲食，每半年作腎功能檢查，一般皆能穩住腎功能。但若有腎絲球炎之病患必需接受治療</td>
+                        </tr>
+                      <tr>
+                        <td align="center" bgcolor="#FFFFCC" class="red">第三期</td>
+                        <td bgcolor="#FFFFCC">中度慢性腎衰竭</td>
+                        <td bgcolor="#FFFFCC">腎絲球過濾率GFR <span class="red">30~59</span> ml/min/1.73m<sup>2</sup></td>
+                        <td bgcolor="#FFFFCC">腎臟功能約正常人的30~59%，積極配合醫師治療，減緩進入第五期腎臟病變</td>
+                        </tr>
+                      <tr>
+                        <td align="center" bgcolor="#FFFFFF" class="red">第四期</td>
+                        <td bgcolor="#FFFFFF">重度慢性腎衰竭</td>
+                        <td bgcolor="#FFFFFF">腎絲球過濾率GFR <span class="red">15~29</span> ml/min/1.73m<sup>2</sup></td>
+                        <td bgcolor="#FFFFFF">腎臟功能約正常人的15~30%，積極配合醫師治療，減緩進入第五期腎臟病變</td>
+                        </tr>
+                      <tr>
+                        <td align="center" bgcolor="#FFFFCC" class="red">第五期</td>
+                        <td bgcolor="#FFFFCC">末期腎臟病變</td>
+                        <td bgcolor="#FFFFCC">腎絲球過濾率GFR <span class="red"><br/>15</span> ml/min/1.73m<sup>2</sup></td>
+                        <td bgcolor="#FFFFCC">腎臟功能剩正常人15%以下，若逐漸無法排除體內代謝廢物和水份，則必需準備與接受透析治療及腎臟移植</td>
+                        </tr>
+                      </table></td>
+                    </tr>
+                  </table>
+                <p class="co13g">&nbsp;</p></td>
+            </tr>
+          </table></td>
+        <td valign="top" background="../images/d-r.jpg"><img src="../images/r_02.jpg" width="35" height="285" alt="" /></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+
+<h1>BMI 身體質量指數</h1>
+<form id="form1" name="form1" method="post" action="">
+  <p>身高：
+    <input type="range" id="height_slider" min="100" max="200" value="150" step="1" oninput="update_height();">
+    <input name="height" type="text" id="height" size="4" /> 公分
+  </p>
+  <p>體重：
+    <input type="range" id="weight_slider" min="20" max="120" value="60" step="1" oninput="update_weight();">
+    <input name="weight" type="text" id="weight" size="4" /> 公斤
+  </p>
+  <p>
+    <input type="button" name="button" id="button" value="計算BMI" />
+  </p>
+</form>
+<span id="message">XX</span>
+
+
+
+</body>
+</html>
